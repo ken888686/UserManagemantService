@@ -16,4 +16,9 @@
         <Folder Include="Controllers\"/>
     </ItemGroup>
 
+    <ItemGroup>
+        <ProjectReference Include="..\UserManagementService.Application\UserManagementService.Application.csproj"/>
+        <ProjectReference Include="..\UserManagementService.Infrastructure\UserManagementService.Infrastructure.csproj"/>
+    </ItemGroup>
+
 </Project>
