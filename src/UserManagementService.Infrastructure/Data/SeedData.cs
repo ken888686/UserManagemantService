@@ -34,7 +34,10 @@ public static class SeedData
                 Email = $"{UserName1}@gmail.com",
                 UserName = UserName1,
                 PasswordHash = passwordHash,
-                Salt = salt
+                Salt = salt,
+                IsEnabled = true,
+                IsVerified = true,
+                IsDeleted = false
             },
             new User
             {
@@ -42,7 +45,10 @@ public static class SeedData
                 Email = $"{UserName2}@gmail.com",
                 UserName = UserName2,
                 PasswordHash = passwordHash,
-                Salt = salt
+                Salt = salt,
+                IsEnabled = true,
+                IsVerified = true,
+                IsDeleted = false
             });
 
         // Role

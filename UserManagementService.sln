@@ -14,6 +14,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UserManagementService.Api",
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UserManagementService.IntegrationTests", "tests\UserManagementService.IntegrationTests\UserManagementService.IntegrationTests.csproj", "{78A28382-3C5F-469F-A452-2F42191542D5}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UserManagementService.UnitTests", "tests\UserManagementService.UnitTests\UserManagementService.UnitTests.csproj", "{3BFABBB8-D1B7-4426-A66D-55BA316862DB}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -25,6 +27,7 @@ Global
 		{EA1CD57C-B8BC-4760-842C-C8924CC42326} = {4AB0B825-FA8A-40B4-8DF9-C164EC085B25}
 		{7D788426-2684-4BC0-B270-5B1829917995} = {4AB0B825-FA8A-40B4-8DF9-C164EC085B25}
 		{78A28382-3C5F-469F-A452-2F42191542D5} = {730F7EF4-A1AB-467E-A3D4-5B9DFD4A4022}
+		{3BFABBB8-D1B7-4426-A66D-55BA316862DB} = {730F7EF4-A1AB-467E-A3D4-5B9DFD4A4022}
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{7AB5FDE3-C42C-4742-9B05-46D585297769}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -47,5 +50,9 @@ Global
 		{78A28382-3C5F-469F-A452-2F42191542D5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{78A28382-3C5F-469F-A452-2F42191542D5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{78A28382-3C5F-469F-A452-2F42191542D5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3BFABBB8-D1B7-4426-A66D-55BA316862DB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3BFABBB8-D1B7-4426-A66D-55BA316862DB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3BFABBB8-D1B7-4426-A66D-55BA316862DB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3BFABBB8-D1B7-4426-A66D-55BA316862DB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
