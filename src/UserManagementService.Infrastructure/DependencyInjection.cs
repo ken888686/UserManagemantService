@@ -16,6 +16,7 @@ public static class DependencyInjection
     {
         // Database 
         var postgresConnectionString = configuration.GetConnectionString("DefaultConnection");
+        if (postgresConnectionString is null) throw new Exception("Postgres connection string is null");
         services.AddDbContext<AppDbContext>(x =>
         {
             x.UseNpgsql(
@@ -38,6 +39,11 @@ public static class DependencyInjection
         // Services
         services.AddScoped<IPasswordService, PasswordService>();
         services.AddScoped<IUserService, UserService>();
+
+        // Healthy Check
+        services
+            .AddHealthChecks()
+            .AddNpgSql(postgresConnectionString);
 
         return services;
     }

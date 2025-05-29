@@ -44,6 +44,10 @@ app.UseAuthorization();
 
 app.MapControllers();
 
+app.MapHealthChecks("/health");
+
+app.UseHealthChecksPrometheusExporter("/metrics");
+
 app.Run();
 
 // For Integration Test
