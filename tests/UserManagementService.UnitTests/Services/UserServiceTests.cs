@@ -45,11 +45,8 @@ public class UserServiceTests
             IsEnabled = true
         };
 
-        _mockUserRepository.Setup(repo => repo.GetByIdAsync(userId))
-            .ReturnsAsync(user);
-
-        _mockMapper.Setup(mapper => mapper.Map<UserDto>(user))
-            .Returns(expectedUserDto);
+        _mockUserRepository.Setup(repo => repo.GetByIdAsync(userId)).ReturnsAsync(user);
+        _mockMapper.Setup(mapper => mapper.Map<UserDto>(user)).Returns(expectedUserDto);
 
         // Act
         var result = await _userService.GetUserAsync(userId);
@@ -61,7 +58,6 @@ public class UserServiceTests
         Assert.Equal(expectedUserDto.UserName, result.UserName);
         Assert.Equal(expectedUserDto.IsVerified, result.IsVerified);
         Assert.Equal(expectedUserDto.IsEnabled, result.IsEnabled);
-
         _mockUserRepository.Verify(repo => repo.GetByIdAsync(userId), Times.Once);
         _mockMapper.Verify(mapper => mapper.Map<UserDto>(user), Times.Once);
     }
@@ -71,8 +67,7 @@ public class UserServiceTests
     {
         // Arrange
         var userId = Guid.NewGuid();
-        _mockUserRepository.Setup(repo => repo.GetByIdAsync(userId))
-            .ReturnsAsync((User?)null);
+        _mockUserRepository.Setup(repo => repo.GetByIdAsync(userId)).ReturnsAsync((User?)null);
 
         // Act
         var result = await _userService.GetUserAsync(userId);
