@@ -1,8 +1,10 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using UserManagementService.Application.Services;
 using UserManagementService.Domain.Interfaces;
 using UserManagementService.Infrastructure.Data;
+using UserManagementService.Infrastructure.Repositories;
 using UserManagementService.Infrastructure.Services;
 
 namespace UserManagementService.Infrastructure;
@@ -31,11 +33,11 @@ public static class DependencyInjection
         });
 
         // Repositories
-        // services.AddScoped<IUserRepository, UserRepository>();
+        services.AddScoped<IUserRepository, UserRepository>();
 
         // Services
         services.AddScoped<IPasswordService, PasswordService>();
-        // services.AddScoped<IUserService, UserService>();
+        services.AddScoped<IUserService, UserService>();
 
         return services;
     }
