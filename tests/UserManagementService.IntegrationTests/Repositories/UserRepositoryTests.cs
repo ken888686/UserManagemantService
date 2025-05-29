@@ -1,3 +1,4 @@
+using UserManagementService.Domain.Interfaces;
 using UserManagementService.Infrastructure.Data;
 using UserManagementService.Infrastructure.Repositories;
 
@@ -5,14 +6,14 @@ namespace UserManagementService.IntegrationTests.Repositories;
 
 public class UserRepositoryTests(BaseEfRepoTestFixture fixture) : IClassFixture<BaseEfRepoTestFixture>
 {
+    private readonly IUserRepository _userRepository = new UserRepository(fixture.DbContext);
+
     [Fact]
     public async Task GetByIdAsync_WithExistingUserId_ReturnsUser()
     {
         // Arrange
-        var repository = new UserRepository(fixture.DbContext);
-
         // Act
-        var result = await repository.GetByIdAsync(SeedData.UserId1);
+        var result = await _userRepository.GetByIdAsync(SeedData.UserId1);
 
         // Assert
         Assert.NotNull(result);
@@ -26,11 +27,10 @@ public class UserRepositoryTests(BaseEfRepoTestFixture fixture) : IClassFixture<
     public async Task GetByIdAsync_WithNonExistingUserId_ReturnsNull()
     {
         // Arrange
-        var repository = new UserRepository(fixture.DbContext);
         var nonExistingUserId = Guid.NewGuid();
 
         // Act
-        var result = await repository.GetByIdAsync(nonExistingUserId);
+        var result = await _userRepository.GetByIdAsync(nonExistingUserId);
 
         // Assert
         Assert.Null(result);
@@ -40,15 +40,14 @@ public class UserRepositoryTests(BaseEfRepoTestFixture fixture) : IClassFixture<
     public async Task GetByIdAsync_WithDeletedUser_ReturnsNull()
     {
         // Arrange
-        var repository = new UserRepository(fixture.DbContext);
         var deletedUserId = SeedData.UserId2; // Using the second seeded user
-        var user = await repository.GetByIdAsync(deletedUserId);
+        var user = await _userRepository.GetByIdAsync(deletedUserId);
         user!.IsDeleted = true;
         user.DeletedAt = DateTime.UtcNow;
         await fixture.DbContext.SaveChangesAsync();
 
         // Act
-        var result = await repository.GetByIdAsync(deletedUserId);
+        var result = await _userRepository.GetByIdAsync(deletedUserId);
 
         // Assert
         Assert.NotNull(result);
@@ -60,10 +59,8 @@ public class UserRepositoryTests(BaseEfRepoTestFixture fixture) : IClassFixture<
     public async Task GetByIdAsync_WithExistingUserId_IncludesUserRoles()
     {
         // Arrange
-        var repository = new UserRepository(fixture.DbContext);
-
         // Act
-        var user = await repository.GetByIdAsync(SeedData.UserId1);
+        var user = await _userRepository.GetByIdAsync(SeedData.UserId1);
 
         // Assert
         Assert.NotNull(user);
