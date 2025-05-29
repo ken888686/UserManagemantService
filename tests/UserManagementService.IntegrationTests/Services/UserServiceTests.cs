@@ -18,7 +18,7 @@ public class UserServiceTests(BaseEfRepoTestFixture fixture) : IClassFixture<Bas
         var userService = new UserService(repository, mapper);
 
         // Act
-        var result = await userService.GetUserAsync(SeedData.UserId1);
+        var result = await userService.GetUserByAsync(SeedData.UserId1);
 
         // Assert
         Assert.NotNull(result);
@@ -39,13 +39,9 @@ public class UserServiceTests(BaseEfRepoTestFixture fixture) : IClassFixture<Bas
         var nonExistingUserId = Guid.NewGuid();
 
         // Act
-        var result = await userService.GetUserAsync(nonExistingUserId);
+        var result = await userService.GetUserByAsync(nonExistingUserId);
 
         // Assert
-        Assert.NotNull(result);
-        Assert.Equal(Guid.Empty, result.Id);
-        Assert.Null(result.UserName);
-        Assert.Null(result.Email);
-        Assert.False(result.IsEnabled);
+        Assert.Null(result);
     }
 }

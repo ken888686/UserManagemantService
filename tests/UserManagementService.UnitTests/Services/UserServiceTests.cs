@@ -49,7 +49,7 @@ public class UserServiceTests
         _mockMapper.Setup(mapper => mapper.Map<UserDto>(user)).Returns(expectedUserDto);
 
         // Act
-        var result = await _userService.GetUserAsync(userId);
+        var result = await _userService.GetUserByAsync(userId);
 
         // Assert
         Assert.NotNull(result);
@@ -70,15 +70,10 @@ public class UserServiceTests
         _mockUserRepository.Setup(repo => repo.GetByIdAsync(userId)).ReturnsAsync((User?)null);
 
         // Act
-        var result = await _userService.GetUserAsync(userId);
+        var result = await _userService.GetUserByAsync(userId);
 
         // Assert
-        Assert.NotNull(result);
-        Assert.Equal(Guid.Empty, result.Id);
-        Assert.Null(result.Email);
-        Assert.Null(result.UserName);
-        Assert.False(result.IsVerified);
-        Assert.False(result.IsEnabled);
+        Assert.Null(result);
 
         _mockUserRepository.Verify(repo => repo.GetByIdAsync(userId), Times.Once);
         _mockMapper.Verify(mapper => mapper.Map<UserDto>(It.IsAny<User>()), Times.Never);

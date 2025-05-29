@@ -4,5 +4,5 @@ namespace UserManagementService.Application.Services;
 
 public interface IUserService
 {
-    Task<UserDto> GetUserAsync(Guid id);
+    Task<UserDto?> GetUserByAsync(Guid id);
 }

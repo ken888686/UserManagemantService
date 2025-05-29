@@ -1,5 +1,7 @@
 using Microsoft.OpenApi.Models;
 using Scalar.AspNetCore;
+using UserManagementService.Application;
+using UserManagementService.Infrastructure;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -24,6 +26,9 @@ builder.Services.AddOpenApi(options =>
 });
 
 builder.Services.AddCors();
+
+builder.Services.AddInfrastructure(builder.Configuration);
+builder.Services.AddApplication();
 
 var app = builder.Build();
 
